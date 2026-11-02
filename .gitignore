@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+outputs/
+VINS_Dataset/
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.gif
+*.zip
+*.pt
+*.pth
+*.joblib
+.env

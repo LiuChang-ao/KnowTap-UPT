@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+type: dataset
+title: "KnowTap: User-Perceived Tappability (UPT) dataset"
+message: "Please cite the KnowTap paper below. Credit the original VINS project when using its screens."
+version: "1.0.0"
+authors:
+  - family-names: Liu
+    given-names: "Chang'ao"
+  - family-names: Shen
+    given-names: Chengyi
+  - family-names: Cui
+    given-names: Zhitong
+  - family-names: Wang
+    given-names: Yao
+  - family-names: Luo
+    given-names: Shijian
+preferred-citation:
+  type: conference-paper
+  title: "KnowTap: A Knowledge-Driven Tool for Fine-Grained Tappability Assessment and Design Iteration of Mobile UIs"
+  authors:
+    - family-names: Liu
+      given-names: "Chang'ao"
+    - family-names: Shen
+      given-names: Chengyi
+    - family-names: Cui
+      given-names: Zhitong
+    - family-names: Wang
+      given-names: Yao
+    - family-names: Luo
+      given-names: Shijian
+  year: 2026
+  doi: "10.1145/3830398.3830517"
+  collection-title: "The 39th Annual ACM Symposium on User Interface Software and Technology (UIST '26)"
