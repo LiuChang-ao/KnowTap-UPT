@@ -10,7 +10,7 @@ UPT contains visually perceived tappability annotations for **9,751 components o
 | --- | ---: | --- |
 | [screens.csv](data/screens.csv) | 800 | VINS screen ID, platform, upstream image path, component count and reference fold |
 | [components.csv](data/components.csv) | 9,751 | Retained component IDs and normalized bounding boxes |
-| [annotations.csv](data/annotations.csv) | 9,751 | Final continuous training target and its rounded display value |
+| [annotations.csv](data/annotations.csv) | 9,751 | Continuous perceived-tappability score for each component |
 | [SHA256SUMS](data/SHA256SUMS) | 3 | SHA-256 digest of each released CSV |
 
 Join the two component tables on **both** `vins_id` and `component_id`. To retrieve the corresponding screen, join on `vins_id` and resolve `vins_image_path` under your own VINS download. See the [data dictionary and provenance](DATA.md) for coordinate conventions, merged components, label construction and filtering.

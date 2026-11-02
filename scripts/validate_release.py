@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCHEMAS = {
     "screens.csv": ["vins_id", "platform", "vins_image_path", "component_count", "reference_fold"],
     "components.csv": ["vins_id", "component_id", "x_min", "y_min", "x_max", "y_max"],
-    "annotations.csv": ["vins_id", "component_id", "rating_final", "rating_rounded"],
+    "annotations.csv": ["vins_id", "component_id", "rating_final"],
 }
 HISTOGRAM = [2146, 1204, 1882, 2138, 1594, 787]
 
@@ -76,9 +76,9 @@ def load_release(directory, vins_root=None, check_hashes=True):
                 f"invalid component ID: {key}")
         x, y, x2, y2 = (float(row[f]) for f in ("x_min", "y_min", "x_max", "y_max"))
         require(0 <= x < x2 <= 1 and 0 <= y < y2 <= 1, f"invalid box: {key}")
-        val, band = float(labels[key]["rating_final"]), int(labels[key]["rating_rounded"])
-        require(math.isfinite(val) and 0 <= val <= 5 and band == round(val), f"invalid rating: {key}")
-        hist[band] += 1
+        val = float(labels[key]["rating_final"])
+        require(math.isfinite(val) and 0 <= val <= 5, f"invalid rating: {key}")
+        hist[round(val)] += 1
     require([hist[n] for n in range(6)] == HISTOGRAM, "rating distribution differs from the paper")
     return screens, components, labels
 

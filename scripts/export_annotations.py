@@ -34,7 +34,7 @@ def main():
         require(sid in folds, f"screen not in reference split: {sid}")
         with source.open(encoding="utf-8-sig", newline="") as fp:
             reader = csv.DictReader(fp)
-            fields = {"imgId", "objId", "ratingInt", "ratingFinal", "x", "y", "x2", "y2"}
+            fields = {"imgId", "objId", "ratingFinal", "x", "y", "x2", "y2"}
             require(fields <= set(reader.fieldnames or []), f"missing source column: {source.name}")
             rows = sorted(reader, key=lambda r: r["objId"])
         platform, subset = ("Android", "Android") if sid.startswith("Android_") else ("iOS", "iphone")
@@ -46,7 +46,7 @@ def main():
             components.append(dict(**key, x_min=row["x"], y_min=row["y"],
                                    x_max=row["x2"], y_max=row["y2"]))
             # Preserve the decimal strings in the source; never quantize the continuous target.
-            ratings.append(dict(**key, rating_final=row["ratingFinal"], rating_rounded=row["ratingInt"]))
+            ratings.append(dict(**key, rating_final=row["ratingFinal"]))
     require({r["vins_id"] for r in screens} == set(folds), "screen/fold sets differ")
     tables = {"screens.csv": screens, "components.csv": components, "annotations.csv": ratings}
     files = {name: serialize(SCHEMAS[name], rows) for name, rows in tables.items()}

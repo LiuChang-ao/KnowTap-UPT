@@ -17,7 +17,7 @@ For an image of width `W` and height `H`, the pixel box is `(x_min*W, y_min*H, x
 
 ## Labels
 
-The annotation protocol started with GPT-4o pre-labels followed by independent correction by three crowdworker groups on a 0–5 scale. Use **`rating_final`** (the source `ratingFinal`) as the continuous regression target. **`rating_rounded`** (the source `ratingInt`) is the integer used for the descriptive distribution, not the training target or an individual group's vote. Individual votes cannot be recovered from the final target.
+The annotation protocol started with GPT-4o pre-labels followed by independent correction by three crowdworker groups on a 0–5 scale. Use **`rating_final`** (the source `ratingFinal`) as the continuous regression target. The descriptive counts below are computed from this score with `round(float(rating_final))` in Python (ties to even). Individual votes cannot be recovered from the final target.
 
 Component merging matters: **672 retained rows** combine an icon and a text element. Their final bounding box is the union of the two part boxes and their score is the mean of the two part consensus scores. This was checked against the pre-merge table for all 672 rows. As a result, **350 targets are not multiples of one third** (up to floating-point precision). They are present in the analysis data and have been preserved; do not round them to reconstruct three integer votes. For example, the retained `Android_1 / Icon_12_Text_25` has `rating_final = 3.5`.
 
